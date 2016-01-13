@@ -1,12 +1,15 @@
 <?php
-	
+
 	include('inc/db_connect.php');
+
+	if($_GET['logout']){
+
+		session_destroy();
+		header('Location: index.php');
+	}
 
 	$results = DB::query("SELECT * FROM users");
 
-	if($_GET['logout']){
-		session_destroy();
-	}
 
 ?>
 
