@@ -10,11 +10,16 @@
 }
 
 /* line 13, ../compass/sass/style.scss */
-.row {
+.container .row {
   margin: 10px;
 }
 
 /* line 16, ../compass/sass/style.scss */
 .btn {
   margin-right: 10px;
+}
+
+/* line 19, ../compass/sass/style.scss */
+.red-text {
+  color: red;
 }
