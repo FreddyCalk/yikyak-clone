@@ -1,36 +1,42 @@
 /* line 4, ../compass/sass/style.scss */
 * {
-  color: #000080;
+  color: white;
 }
 
 /* line 9, ../compass/sass/style.scss */
 #signin {
   text-align: center;
   font-family: Impact;
+  color: #000080;
 }
 
-/* line 13, ../compass/sass/style.scss */
+/* line 14, ../compass/sass/style.scss */
 .container .row {
   margin: 10px;
 }
 
-/* line 16, ../compass/sass/style.scss */
+/* line 17, ../compass/sass/style.scss */
 .btn {
   margin-right: 10px;
 }
 
-/* line 19, ../compass/sass/style.scss */
+/* line 20, ../compass/sass/style.scss */
 .red-text {
   color: red;
 }
 
-/* line 23, ../compass/sass/style.scss */
+/* line 24, ../compass/sass/style.scss */
 #home-link {
-  color: black;
+  color: #888;
 }
 
-/* line 26, ../compass/sass/style.scss */
+/* line 27, ../compass/sass/style.scss */
 #home-link:hover {
-  color: grey;
+  color: black;
   text-decoration: none;
+}
+
+/* line 31, ../compass/sass/style.scss */
+#header-wrapper {
+  background-color: #000080;
 }
