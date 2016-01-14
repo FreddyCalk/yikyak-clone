@@ -1,6 +1,12 @@
 <?php
 	include 'inc/db_connect.php';
 
+	if($_SESSION['username']){
+		header('Location: index.php');
+	}
+
+	
+
 	if(isset($_POST['userName'])){
 		// print $_POST['email'];
 		// print $_POST['password'];
@@ -8,7 +14,9 @@
 		
 		// print $hashed_password;
 		// exit;
-
+		if($_POST['password'] !== $_POST['password-confirm']){
+			header('Location: /signup.php?password=fail');
+		}
 
 		$fullName = $_POST['name'];
 		$email = $_POST['email'];
@@ -53,6 +61,9 @@
 ?>
 </head>
 <body>
+	<?php
+		include 'header.php';
+	?>
 	<div class="container">
 		<div class="row">
 			<h1 id="signin" class="col-xs-8 col-xs-offset-2" id="login-header">Registration</h1>
@@ -60,7 +71,10 @@
 		<div class="row">
 		<?php
 			if($_GET['register'] == 'failure'){
-			print "<h4 class='red-text'>That Username already exists in our database</h4>";
+				print "<h4 class='red-text'>Your Username or Email already exists in our database</h4>";
+			}
+			if($_GET['password'] == 'fail'){
+				print "<h4 class='red-text'>The passwords you entered do not match.</h4>";
 			}
 		?>
 		</div>
@@ -76,6 +90,9 @@
 			</div>
 			<div class="row">
 				<input class="form-control" type="password" name="password" placeholder="Password...">
+			</div>
+			<div class="row">
+				<input class="form-control" type="password" name="password-confirm" placeholder="Confirm Password...">
 			</div>
 			<div class="row">
 				<input class="col-xs-3 col-xs-offset-3 btn btn-success" type="submit" value="Register">

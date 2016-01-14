@@ -24,19 +24,11 @@
 </head>
 <body>
 
-	
-
-	<div id='button-wrapper' style="float:right">
 	<?php
-		if($_SESSION['username']){
-			print '<a href="/index.php?logout=true" class="btn btn-danger">Logout</a>';
-		}else{
-			print '<a href="/login.php" class="btn btn-success">Login</a>';
-			print '<a href="/signup.php" class="btn btn-primary">Register</a>';
-		}
+		include 'header.php';
 	?>
-	</div>
-	<?php print '<h1> &nbsp YIK YAK</h1>'; ?>
+
+	
 	
 </body>
 </html>

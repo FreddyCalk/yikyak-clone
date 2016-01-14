@@ -1,6 +1,10 @@
 <?php
 	include 'inc/db_connect.php';
 
+	if($_SESSION['username']){
+		header('Location: index.php');
+	}
+
 	if(isset($_POST['userName'])){
 		// print $_POST['email'];
 		// print $_POST['password'];
@@ -49,6 +53,9 @@
 ?>
 </head>
 <body>
+	<?php
+		include 'header.php';
+	?>
 
 	<div class="container">
 		<div class="row">

@@ -23,3 +23,14 @@
 .red-text {
   color: red;
 }
+
+/* line 23, ../compass/sass/style.scss */
+#home-link {
+  color: black;
+}
+
+/* line 26, ../compass/sass/style.scss */
+#home-link:hover {
+  color: grey;
+  text-decoration: none;
+}
