@@ -1,9 +1,9 @@
 @import "vars";
 @import "base";
 
-*{
+.white-text{
 	color:white;
-	
+	display:inline;
 }
 
 #signin{
@@ -30,4 +30,10 @@
 }
 #header-wrapper{
 	background-color: $blue;
+}
+.post-container{
+	border:1px solid $gray;
+	margin:5px;
+	padding:10px;
+	border-radius:10px;
 }

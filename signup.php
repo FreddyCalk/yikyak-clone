@@ -27,14 +27,13 @@
 		//NOW WHAT?
 		//Check to see if this user is in the DB!!
 		$result = DB::query("SELECT * FROM users WHERE username = '" . $_POST['userName']."' OR email = '" . $email . "'");
-		$uid = $result[0]['uid'];
 
 
 	if(!$result){
 		$result = DB::query("INSERT INTO users (name,email,username,password) VALUES
 			('" . $fullName . "','" . $email . "','" . $username . "','" . $hashed_password . "')" );
 		$_SESSION['username'] = $username;
-		$_SESSION['uid'] = $uid;
+		$_SESSION['uid'] = DB::insertId();
 		header('Location: /index.php');
 	}else{
 		header('Location: /signup.php?register=failure');
