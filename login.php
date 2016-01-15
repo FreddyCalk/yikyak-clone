@@ -76,6 +76,9 @@
 				<input class="form-control" type="password" name="password" placeholder="Password...">
 			</div>
 			<div class="row">
+				<div id="register-link">Not a member? Sign up <a href="/signup.php">here</a></div>
+			</div>
+			<div class="row">
 				<input class="col-xs-3 col-xs-offset-3 btn btn-success" type="submit" value="Login">
 				<a href="/index.php"><input class="col-xs-3 btn btn-danger" type="button" value="Cancel"></a>
 			</div>

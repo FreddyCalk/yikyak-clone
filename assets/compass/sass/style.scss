@@ -4,6 +4,9 @@
 .white-text{
 	color:white;
 	display:inline;
+	a:hover{
+		text-decoration: none;
+	}
 }
 
 #signin{
@@ -33,7 +36,40 @@
 }
 .post-container{
 	border:1px solid $gray;
-	margin:5px;
+	margin:15px;
 	padding:10px;
 	border-radius:10px;
+
+	.user{
+		display:inline;
+		margin:10px;
+	}
+	.post-time{
+		display:inline;
+		margin:10px;
+	}
+	.post-content{
+		margin:10px;
+	}
+
+	.vote-container{
+		float:right;
+		position:relative;
+		top:-45px;
+		text-align: center;
+		a{
+			color: $gray;
+		}
+		a:hover{
+			text-decoration: none;
+			color: darken($gray,30%)
+		}
+		span{
+			display:block;
+		}
+			
+	}
 }
+
+
+
