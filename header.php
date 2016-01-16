@@ -3,8 +3,8 @@
 		<div class="row">
 		<?php print "<a href='/' style='float:left' class='btn btn-primary'>Yik Yak Home</a>";
 			if(isset($_SESSION['username'])){
-				print '<a href="/post.php" style="float:left" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>New Post</a>';
-				print '<a href="/follow.php" style="float:left" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>Follow</a>';
+				print '<a href="/post.php" style="float:left" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> New Post</a>';
+				print '<a href="/follow.php" style="float:left" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Follow</a>';
 			}
 		 ?>
 			<div id='button-wrapper' style="float:right">
