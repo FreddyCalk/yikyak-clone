@@ -14,7 +14,10 @@
 		'uid' => $_GET['uid'],
 		'vote' => $vote
 	));
-	header('Location: index.php');
-
+	if($_GET['view']){
+		header('Location: user.php?user='.$_GET['view']);
+	}else{
+		header('Location: index.php');
+	}
 
 ?>
