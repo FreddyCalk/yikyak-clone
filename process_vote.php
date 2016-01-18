@@ -7,7 +7,7 @@
 		$vote = -1;
 	}
 
-
+	// DB::query();
 
 	DB::insert('post_votes', array(
 		'pid' => $_GET['pid'],
@@ -17,7 +17,7 @@
 	if($_GET['view']){
 		header('Location: user.php?user='.$_GET['view']);
 	}else{
-		header('Location: index.php');
+		header('Location: /');
 	}
 
 ?>

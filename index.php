@@ -10,7 +10,7 @@
 
 	if($_SESSION['username']){
 		$results = DB::query("SELECT * FROM posts
-			RIGHT JOIN users ON users.uid = posts.uid
+			LEFT JOIN users ON users.uid = posts.uid
 			ORDER BY posts.timestamp desc limit 30");
 	}
 
