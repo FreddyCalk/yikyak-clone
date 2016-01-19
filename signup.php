@@ -14,30 +14,33 @@
 		
 		// print $hashed_password;
 		// exit;
-		if($_POST['password'] !== $_POST['password-confirm']){
+		if($_POST['password'] == $_POST['password-confirm']){
+			$fullName = $_POST['name'];
+			$email = $_POST['email'];
+			$username = $_POST['userName'];
+			$hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+			//USER SUBMITTED SOMETHING.
+			//NOW WHAT?
+			//Check to see if this user is in the DB!!
+			$result = DB::query("SELECT * FROM users WHERE username = '" . $_POST['userName']."' OR email = '" . $email . "'");
+			if(!$result){
+				$result = DB::query("INSERT INTO users (name,email,username,password) VALUES
+					('" . $fullName . "','" . $email . "','" . $username . "','" . $hashed_password . "')" );
+				$_SESSION['username'] = $username;
+				$_SESSION['uid'] = DB::insertId();
+				header('Location: /index.php');
+			}else{
+				header('Location: /signup.php?register=failure');
+			}
+		}else{
 			header('Location: /signup.php?password=fail');
 		}
 
-		$fullName = $_POST['name'];
-		$email = $_POST['email'];
-		$username = $_POST['userName'];
-		$hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-		//USER SUBMITTED SOMETHING.
-		//NOW WHAT?
-		//Check to see if this user is in the DB!!
-		$result = DB::query("SELECT * FROM users WHERE username = '" . $_POST['userName']."' OR email = '" . $email . "'");
+		
 
 
-	if(!$result){
-		$result = DB::query("INSERT INTO users (name,email,username,password) VALUES
-			('" . $fullName . "','" . $email . "','" . $username . "','" . $hashed_password . "')" );
-		$_SESSION['username'] = $username;
-		$_SESSION['uid'] = DB::insertId();
-		header('Location: /index.php');
-	}else{
-		header('Location: /signup.php?register=failure');
-	}
+	
 		// print '<pre>';
 		// print_r($result);
 		// exit;
@@ -70,11 +73,9 @@
 		<div class="row">
 		<?php
 			if($_GET['register'] == 'failure'){
-				print "<h4 class='red-text'>Your Username or Email already exists in our database</h4>";
+				print "<h4 class='red-text'>That Username or Email already exists in our database</h4>";
 			}
-			if($_GET['password'] == 'fail'){
-				print "<h4 class='red-text'>The passwords you entered do not match.</h4>";
-			}
+			
 		?>
 		</div>
 		<form method="post" action="signup.php">
@@ -87,6 +88,9 @@
 			<div class="row">
 				<input class="form-control" type="text" name="userName" placeholder="Username...">
 			</div>
+			<?php if($_GET['password'] == 'fail'){
+				print "<h6 class='red-text'> &nbsp &nbspThe passwords you entered do not match.</h6>";
+			}?>
 			<div class="row">
 				<input class="form-control" type="password" name="password" placeholder="Password...">
 			</div>

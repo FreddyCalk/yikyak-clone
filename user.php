@@ -23,7 +23,7 @@
 <body>
 	<?php include 'header.php';	?>
 	<div class="container">
-		<img class="col-xs-6 col-md-3 col-lg-2" src=<?php print $result[0]['profile_image_url'] ?>>
+		<a href="update_image.php"><img class="col-xs-6 col-md-3 col-lg-2 profile_picture" src=<?php print $result[0]['profile_image_url'] ?>></a>
 		<div class="username col-xs-12">@<?php print $result[0]['username'] ?></div>
 		
 		<?php

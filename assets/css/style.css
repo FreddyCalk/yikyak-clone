@@ -87,3 +87,8 @@
 .post-container .vote-container span {
   display: block;
 }
+
+/* line 73, ../compass/sass/style.scss */
+.profile_picture {
+  margin-top: 30px;
+}
