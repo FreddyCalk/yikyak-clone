@@ -38,8 +38,8 @@
 	    		$button_class = 'btn-success';
 	    	}
 	    	print '<div class="row">';
-	    		print '<div class="user col-md-3 col-md-offset-4 text-left"><a href="/user.php?user='. $user['uid'] .'">@'.$user['username'].'</a></div>';
-	    		print '<button type="button" class="btn '.$button_class.' col-md-2 text-left follow-button" data-follow="'.$follow.'" uid='.$user['uid'].'>'.$button_text.'</button>';
+	    		print '<div class="user col-xs-2 col-xs-offset-3 text-left"><a href="/user.php?user='. $user['uid'] .'">@'.$user['username'].'</a></div>';
+	    		print '<button type="button" class="btn '.$button_class.' col-xs-3 col-xs-offset-1 text-left follow-button" data-follow="'.$follow.'" uid='.$user['uid'].'>'.$button_text.'</button>';
 	    	print '</div>';
 	    }
 	    ?>
