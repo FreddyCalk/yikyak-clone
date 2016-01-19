@@ -8,11 +8,6 @@
 		header('Location: index.php');
 	}
 
-	if($_SESSION['username']){
-		$results = DB::query("SELECT * FROM posts
-			LEFT JOIN users ON users.uid = posts.uid
-			ORDER BY posts.timestamp desc limit 30");
-	}
 
 	if(!$_SESSION['username']){
 		header('Location: login.php');
@@ -31,7 +26,8 @@
 					}
 					$posts = DB::query("SELECT posts.body, posts.timestamp, users.username, users.uid, posts.pid FROM posts 
 						LEFT JOIN users on posts.uid=users.uid
-						WHERE posts.uid IN ($following_array)");					
+						WHERE posts.uid IN ($following_array)
+						ORDER BY posts.timestamp desc");					
 				}else{
 					$posts = DB::query(
 						"SELECT posts.body, posts.timestamp, users.username FROM posts
