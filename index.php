@@ -18,7 +18,26 @@
 		header('Location: login.php');
 	}
 
-
+	$results_following = DB::query("SELECT distinct(uid_to_follow) FROM following following
+					WHERE following.uid=%i" , $_SESSION['uid']);
+				$last = count($results_following);
+				if($last > 0){
+					$i = 0;
+					$following_array = '';
+					foreach($results_following as $following){
+						$i++;
+						$following_array .= $following['uid_to_follow'];
+						if($i != $last){$following_array .= ",";}
+					}
+					$posts = DB::query("SELECT posts.body, posts.timestamp, users.username, users.uid, posts.pid FROM posts 
+						LEFT JOIN users on posts.uid=users.uid
+						WHERE posts.uid IN ($following_array)");					
+				}else{
+					$posts = DB::query(
+						"SELECT posts.body, posts.timestamp, users.username FROM posts
+							LEFT JOIN users on posts.uid=users.uid
+							ORDER BY posts.timestamp desc limit 30");
+				}
 ?>
 
 
@@ -36,9 +55,9 @@
 
 	<div class="container">
 		<?php
-		if(isset($_SESSION['username'])){
-			foreach($results as $result){
-				$votes = DB::query("SELECT * FROM post_votes WHERE pid=%i",$result['pid']);
+		if((isset($_SESSION['username']))&&(sizeof($posts) > 0)){
+			foreach($posts as $post){
+				$votes = DB::query("SELECT * FROM post_votes WHERE pid=%i",$post['pid']);
 				$post_votes = 0;
 				if(sizeof($votes) !== 0){
 					foreach($votes as $vote){
@@ -46,14 +65,16 @@
 					}
 				}
 
-				print "<div class='post-container'><div class='user'><a href='/user.php?user=". $result['uid'] ."'>@" . $result['username'] . "</a></div>";
-				print "<div class='post-content'>" . $result['body'] . "</div>";
-				print "<div class='post-time'>". $result['timestamp'] ."</div>";
-				print "<div class='vote-container'><a href='process_vote.php?pid=".$result['pid']."&uid=".$result['uid']."&vote=up'><span class='glyphicon glyphicon-menu-up up-vote'></span></a>";
+				print "<div class='post-container'><div class='user'><a href='/user.php?user=". $post['uid'] ."'>@" . $post['username'] . "</a></div>";
+				print "<div class='post-content'>" . $post['body'] . "</div>";
+				print "<div class='post-time'>". $post['timestamp'] ."</div>";
+				print "<div class='vote-container'><a href='process_vote.php?pid=".$post['pid']."&uid=".$post['uid']."&vote=up'><span class='glyphicon glyphicon-menu-up up-vote'></span></a>";
 				print "<span class='votes'>".$post_votes."</span>";
-				print "<a href='process_vote.php?pid=".$result['pid']."&uid=".$result['uid']."&vote=down'><span class='glyphicon glyphicon-menu-down down-vote'></span></a></div>";
+				print "<a href='process_vote.php?pid=".$post['pid']."&uid=".$post['uid']."&vote=down'><span class='glyphicon glyphicon-menu-down down-vote'></span></a></div>";
 				print "</div>";
 			}
+		}else{
+			print '<div class="start-following"> Follow some people <a href="/follow.php">here</a> to see posts</div>';
 		}
 		?>
 	</div>

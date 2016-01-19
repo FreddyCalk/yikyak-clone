@@ -31,14 +31,14 @@
 	    	if(in_array($user['uid'],$following_array)){
 	    		$button_text = 'Unfollow';
 	    		$follow = "unfollow";
-	    		$button_class = 'btn-default';
+	    		$button_class = 'btn-danger';
 	    	}else{
 	    		$button_text = 'Follow';
 	    		$follow = "followed";
-	    		$button_class = 'btn-primary';
+	    		$button_class = 'btn-success';
 	    	}
-	    	print '<div class="user">';
-	    		print '<div class="user col-md-6 text-left"><a href="/user.php?user='. $user['uid'] .'">@'.$user['username'].'</a></div>';
+	    	print '<div class="row">';
+	    		print '<div class="user col-md-3 col-md-offset-4 text-left"><a href="/user.php?user='. $user['uid'] .'">@'.$user['username'].'</a></div>';
 	    		print '<button type="button" class="btn '.$button_class.' col-md-2 text-left follow-button" data-follow="'.$follow.'" uid='.$user['uid'].'>'.$button_text.'</button>';
 	    	print '</div>';
 	    }
