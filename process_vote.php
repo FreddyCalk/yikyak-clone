@@ -14,9 +14,9 @@
 	// exit;
 
 	if((sizeof($result)>0)&&($result[0]['vote'] == 1)&&($vote == -1)){
-		DB::update('post_votes', array('vote' => $vote),"pid=%i",$_GET['pid']);
+		DB::update('post_votes', array('vote' => $vote),"pid=%i" AND "uid=%i",$_GET['pid'],$_GET['uid']);
 	}else if((sizeof($result)>0)&&($result[0]['vote'] == -1)&&($vote == 1)){
-		DB::update('post_votes', array('vote' => $vote),"pid=%i",$_GET['pid']);
+		DB::update('post_votes', array('vote' => $vote),"pid=%i" AND "uid=%i",$_GET['pid'],$_GET['uid']);
 	}else if(sizeof($result)==0){
 		DB::insert('post_votes', array(
 		'pid' => $_GET['pid'],
@@ -33,5 +33,3 @@
 	}else{
 		header('Location: /');
 	}
-
-?>
