@@ -30,10 +30,14 @@
 						ORDER BY posts.timestamp desc");					
 				}else{
 					$posts = DB::query(
-						"SELECT posts.body, posts.timestamp, users.username, posts.pid FROM posts
+						"SELECT posts.body, posts.timestamp, users.username, users.uid, posts.pid FROM posts
 							LEFT JOIN users on posts.uid=users.uid
 							ORDER BY posts.timestamp desc limit 30");
 				}
+
+				// print '<pre>';
+				// print_r($posts);
+				// exit;
 ?>
 
 
